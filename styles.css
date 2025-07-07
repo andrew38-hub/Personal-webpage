@@ -4,15 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-.dark-mode {
-  background-color: #333;
-}
-.dark-mode header, .dark-mode footer {
-  background-color: #222;
-}
-.dark-mode a {
-  color: #1e90ff;
-}
+
 
 /* body styles */
 
@@ -193,3 +185,40 @@ button[type="submit"]:hover {
     flex-direction: column;
   }
 }
+
+:root {
+            --background-color: white;
+            --text-color: black;
+            --button-background: lightgray;
+            --button-text: black;
+        }
+
+        body.dark-mode {
+            --background-color: black;
+            --text-color: white;
+            --button-background: darkgray;
+            --button-text: white;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        button {
+            background-color: var(--button-background);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }

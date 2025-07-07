@@ -24,21 +24,25 @@ document.getElementById('contact-form').addEventListener('submit', function(even
   }
 });
 
-const toggleButton = document.getElementById('theme-toggle');
-toggleButton.addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-});
+document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('toggle-dark-mode');
+            const savedDarkMode = localStorage.getItem('dark-mode');
+            let isDarkMode;
 
-toggleButton.addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-  const isDarkMode = document.body.classList.contains('dark-mode');
-  localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-});
+            if (savedDarkMode !== null) {
+                isDarkMode = savedDarkMode === 'true';
+            } else {
+                isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
 
-window.addEventListener('load', function() {
-  const theme = localStorage.getItem('theme');
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
-});
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                isDarkMode = document.body.classList.contains('dark-mode');
+                toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+                localStorage.setItem('dark-mode', isDarkMode);
+            });
+        });
 
